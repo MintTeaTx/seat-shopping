@@ -1,7 +1,7 @@
 {
   "name": "fordav4/seat-shopping",
   "description": "description_text",
-  "minimum-stability": "stable",
+  "minimum-stability": "alpha",
   "license": "proprietary",
   "authors": [
     {
@@ -9,9 +9,6 @@
       "email": "email@example.com"
     }
   ],
-  "require-dev": {
-    "barryvdh/laravel-ide-helper": "^2.6"
-  },
   "require": {
     "eveseat/web": "3.0.17"
   }
