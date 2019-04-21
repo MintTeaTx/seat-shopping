@@ -14,6 +14,13 @@
       "Fordav3\\Seat\\Shopping\\": "src/"
     }
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Fordav3\\Seat\\Shopping\\ShoppingServiceProvider"
+      ]
+    }
+  },
   "require": {
     "eveseat/web": "3.0.17"
   }
