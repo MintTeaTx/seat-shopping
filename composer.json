@@ -22,6 +22,8 @@
     }
   },
   "require": {
-    "eveseat/web": "3.0.17"
+    "eveseat/web": "3.0.17",
+    "eveseat/services": "^3.0",
+    "eveseat/eveapi": "^3.0"
   }
 }

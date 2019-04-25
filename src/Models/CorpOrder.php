@@ -11,10 +11,18 @@ namespace Fordav3\Seat\Shopping\Models;
 class CorpOrder extends \Illuminate\Database\Eloquent\Model
 {
 
-    protected $table = 'seat_shopping_orders';
+    protected $table = 'shopping_orders';
     public $incrementing = true;
     protected $primaryKey = 'order_id';
-    protected $fillable = ['character_name', 'details', 'status', 'handler', 'completed_date'];
+    protected $fillable = ['user_id', 'details', 'raw_details', 'status', 'handler', 'completed_date', 'total_cost'];
+    protected $attributes =['status'=> 0, 'handler'=>0, 'completed_date'=> '', 'total_cost'=>0];
     protected $casts = ['details' => 'array'] ;
+
+
+    public function reason()
+    {
+        return $this->hasOne(RejectionReason::class);
+    }
+
 
 }

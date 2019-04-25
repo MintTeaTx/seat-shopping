@@ -27,11 +27,19 @@
                 'uses' => 'OrderController@getOrderView',
                 'middleware' => 'bouncer:order.view'
             ]);
-            Route::get('/orders/{order_id}/{action',[
+            Route::get('/orders/{order_id}/{action}',[
                 'as' => 'shopping.settle',
                 'uses' => 'OrderController@settleOrder',
                 'middleware' => 'bouncer:shopping.settle'
                 ])->where(['action' => 'Reject|Pending|Progress|Complete']);
+            Route::post('/orders/neworder/',[
+               'as' =>          'shopping.neworder',
+               'uses' =>        'OrderController@createOrder'
+            ]);
+            Route::get('/orders/neworder/confirm/{order_id}/{action}',[
+                'as' =>         'shopping.confirm',
+                'uses' =>       'OrderController@confirmOrder'
+            ]);
      });
     });
 

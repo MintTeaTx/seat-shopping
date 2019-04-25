@@ -38,12 +38,13 @@ class ShoppingServiceProvider extends ServiceProvider
     }
     public function add_views()
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'payout');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'shopping');
     }
     public function register()
     {
         //
-        $this->mergeConfigFrom(__DIR__ . '/Config/shopping.sidebar.php','package.sidebar');
+        $this->mergeConfigFrom(
+            __DIR__ . '/Config/shopping.sidebar.php','package.sidebar');
        // $this->mergeConfigFrom(__DIR__ . '/Config/shopping.permissions.php','web.permissions');
     }
 }
