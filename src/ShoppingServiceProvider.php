@@ -6,7 +6,10 @@
  * Time: 6:45 PM
  */
 namespace Fordav3\Seat\Shopping;
+use Fordav3\Seat\Shopping\Commands\PaymentCheck;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+
 class ShoppingServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +22,8 @@ class ShoppingServiceProvider extends ServiceProvider
         $this->add_routes();
         $this->add_views();
         $this->add_publishes();
+        $this->add_composers();
+        $this->add_commands();
         //
     }
     /**
@@ -26,6 +31,12 @@ class ShoppingServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    public function add_commands()
+    {
+        $this->commands([
+            PaymentCheck::class
+        ]);
+    }
     public function add_publishes()
     {
         $this->publishes([
@@ -40,11 +51,17 @@ class ShoppingServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'shopping');
     }
+    public function add_composers()
+    {
+        View::composer(
+            'shopping::includes.detailmodal', 'Fordav3\Seat\Shopping\Http\Composers\OrderDetailComposer'
+        );
+    }
     public function register()
     {
         //
         $this->mergeConfigFrom(
             __DIR__ . '/Config/shopping.sidebar.php','package.sidebar');
-       // $this->mergeConfigFrom(__DIR__ . '/Config/shopping.permissions.php','web.permissions');
+        $this->mergeConfigFrom(__DIR__ . '/Config/shopping.permissions.php','web.permissions');
     }
 }

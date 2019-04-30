@@ -13,7 +13,6 @@ class CreateOrderTables extends Migration
      */
     public function up()
     {
-        Schema::drop('shopping_orders');
         Schema::create('shopping_orders', function (Blueprint $table) {
             $table->increments('order_id');
             $table->integer('user_id');
@@ -24,6 +23,12 @@ class CreateOrderTables extends Migration
             $table->string('handler');
             $table->string('completed_date');
             $table->timestamps();
+            $table->integer('volume');
+            $table->text('reason');
+            $table->integer('fuel_cost');
+            $table->integer('fee');
+            $table->integer('sub_total');
+            $table->boolean('is_paid');
         });
     }
 
@@ -35,6 +40,6 @@ class CreateOrderTables extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('seat_shopping_orders');
+        Schema::dropIfExists('shopping_orders');
     }
 }

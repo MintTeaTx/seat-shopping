@@ -1,12 +1,11 @@
-
 <div class="modal fade" tabindex="-1" role="dialog" id="newOrderModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
-                <h4 class="modal-title">Are you sure?</h4>
+                <h4 class="modal-title">Paste order content here</h4>
             </div>
-
+            Takes EFT fits, multibuys, and most other formats.<br>
             <form role="form" action="{{ route('shopping.neworder') }}" method="post">
                 <div class="form-group">
                     <label>Order Details</label><br>

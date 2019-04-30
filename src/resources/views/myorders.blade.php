@@ -24,10 +24,12 @@
                      </ul>
                      <div class="tab-content">
                          <div class="tab-pane active" id="pendingTab">
+
                              <table id="pendingTable" class="table table-bordered">
                                  <thead>
                                  <tr>
                                      <th>Order ID</th>
+                                     <th>Payment Status</th>
                                      <th>Total Cost</th>
                                  </tr>
                                  </thead>
@@ -37,10 +39,17 @@
                                          @if($order->status === 0)
                                              <tr>
                                                  <td>
-                                                     {{ $order->order_id }}
+                                                     <a href="{{ route('shopping.orderView', ['order_id' => $order->order_id]) }}" >{{ $order->order_id }}</a>
                                                  </td>
                                                  <td>
-                                                     {{ $order->total_cost }}
+                                                     @if($order->is_paid)
+                                                         Paid!
+                                                     @else
+                                                         Not Paid!  Give the total to the corp and paste [  Order {{$order->order_id}}  ] into the reason.
+                                                     @endif
+                                                 </td>
+                                                 <td>
+                                                     {{ number_format( $order->total_cost )}} ISK
                                                  </td>
 
                                              </tr>
@@ -62,16 +71,16 @@
                                  <tbody>
                                  @if(count($complete) > 0)
                                      @foreach($complete as $order)
-                                         @if($order->status === 0)
+                                         @if($order->status === 2)
                                              <tr>
                                                  <td>
-                                                     {{ $order->order_id }}
+                                                     <a href="{{ route('shopping.orderView', ['order_id' => $order->order_id]) }}" >{{ $order->order_id }}</a>
                                                  </td>
                                                  <td>
                                                      {{ $order->completed_date }}
                                                  </td>
                                                  <td>
-                                                     {{ $order->total_cost }}
+                                                     {{ number_format( $order->total_cost )}} ISK
                                                  </td>
 
                                              </tr>
@@ -82,7 +91,7 @@
                              </table>
                          </div>
                          <div class="tab-pane" id="progressTab">
-                             <table id="progressTable" class="table table-bordered">
+                            <table id="progressTable" class="table table-bordered">
                                  <thead>
                                  <tr>
                                      <th>Order ID</th>
@@ -93,16 +102,16 @@
                                  <tbody>
                                  @if(count($progress) > 0)
                                      @foreach($progress as $order)
-                                         @if($order->status === 0)
+                                         @if($order->status === 1)
                                              <tr>
                                                  <td>
-                                                     {{ $order->order_id }}
+                                                     <a href="{{ route('shopping.orderView', ['order_id' => $order->order_id]) }}" >{{ $order->order_id }}</a>
                                                  </td>
                                                  <td>
                                                      {{ $order->updated_at }}
                                                  </td>
                                                  <td>
-                                                     {{ $order->total_cost }}
+                                                     {{ number_format( $order->total_cost )}} ISK
                                                  </td>
 
                                              </tr>
@@ -124,16 +133,16 @@
                                  <tbody>
                                  @if(count($rejected) > 0)
                                      @foreach($rejected as $order)
-                                         @if($order->status === 0)
+                                         @if($order->status === -1)
                                              <tr>
                                                  <td>
-                                                     {{ $order->order_id }}
+                                                     <a href="{{ route('shopping.orderView', ['order_id' => $order->order_id]) }}" >{{ $order->order_id }}</a>
                                                  </td>
                                                  <td>
-                                                     {{ $order->total_cost }}
+                                                     {{ $order->updated_at }}
                                                  </td>
                                                  <td>
-                                                     {{ $order->reason()->reason }}
+                                                     {{ $order->reason }}
                                                  </td>
 
                                              </tr>

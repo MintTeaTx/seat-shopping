@@ -9,20 +9,30 @@
 return [
     'shopping' => [
         'name'=>'Shopping',
+        'permission' => 'shopping.order',
         'route_segment' => 'shopping',
         'icon' => 'fa-shopping-cart',
         'entries' =>    [
             [
                 'name' => 'My Orders',
+                'permission' => 'shopping.order',
                 'icon' => 'fa-snowflake-o',
                 'route_segment' => 'shopping',
                 'route' => 'shopping.myorders'
             ],
             [
-                'name' => 'My Config',
+                'name' => 'View All Orders',
+                'permission' => 'shopping.hauler',
                 'icon' => 'fa-snowflake-o',
                 'route_segment' => 'shopping',
-                'route' => 'shopping.myorders'
+                'route' => 'shopping.handler.list'
+            ],
+            [
+                'name' => 'View My Assigned Orders',
+                'permission' => 'shopping.hauler',
+                'icon' => 'fa-snowflake-o',
+                'route_segment' => 'shopping',
+                'route' => 'shopping.handler.myassigned'
             ],
         ],
     ],
